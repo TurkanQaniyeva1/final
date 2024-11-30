@@ -1,0 +1,127 @@
+.carousel {
+    margin: 30px auto;
+    padding: 30px 0px;
+    width: 75%;
+
+}
+
+.swiper {
+    width: 100%;
+    position: relative;
+}
+
+.swiper-slide {
+    position: relative;
+    font-size: 18px;
+    background: #101014;
+    height: 410px;
+    width: 220px;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.swiper-slide img {
+    object-fit: cover;
+    width: 220px;
+    height: 294px;
+    border-radius: 5px;
+    transition: .3s;
+}
+
+.add-wishlist{
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 25px;
+    height: 25px;
+    border: 1px solid;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: #101014;
+    transition: .3s;
+    z-index: 6;
+    display: none;
+
+}
+
+.swiper-slide:hover img{
+    opacity: 0.6;
+    scale: 1.1;
+}
+
+.swiper-slide:hover .add-wishlist{
+    display: flex;
+}
+
+.game-content {
+    padding: 10px 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.category {
+    font-size: 14px;
+    color: rgb(138, 138, 138);
+}
+
+.name {
+    font-size: 18px;
+}
+
+.price {
+    font-size: 15px;
+    color: rgb(226, 226, 226);
+}
+
+.carousel-navigation{
+    display: flex;
+    gap: 10px;
+    position: absolute;
+    top: -15%;
+    z-index: 3;
+    right: 0;
+}
+
+.custom-button{
+    background-color: #1d1d1d;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel-container{
+    position: relative;
+}
+
+.wishlist-modal{
+    position: absolute;
+    z-index: 4;
+    left: 30%;
+    top: 7px;
+    background-color: #000000;
+    border-radius: 10px;
+    padding: 5px 10px;
+    font-size: 15px;
+    z-index: 10;
+    display: none;
+}
+
+.add-wishlist:hover .wishlist-modal{
+    background-color: red;
+} 
+
+
+/* @media screen and (max-width: 1000px) {
+    .swiper-slide img{
+        width: 180px;
+        height: 200px;
+    }
+} */

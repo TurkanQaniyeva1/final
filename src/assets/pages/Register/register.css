@@ -1,0 +1,133 @@
+.register-container {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 40px;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+    max-width: 500px;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    left: 50%;
+    height: 650px;
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  .register-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    color: #fff;
+  }
+  
+  .register-form .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1rem;
+    color: #ddd;
+  }
+  
+  .input-field {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+  }
+  
+  .input-field:focus {
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 10px rgba(0, 213, 255, 0.5);
+  }
+  
+  .error-message {
+    color: #ff5757;
+    font-size: 0.875rem;
+    margin-top: 5px;
+  }
+  
+  .submit-button {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background: linear-gradient(90deg, #ff8a00, #e52e71);
+    transition: background 0.3s ease-in-out, transform 0.2s ease, box-shadow 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+  }
+  
+  .submit-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 300%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: skewX(-45deg);
+    transition: left 0.5s ease;
+    z-index: 0;
+  }
+  
+  .submit-button:hover::before {
+    left: 100%;
+  }
+  
+  .submit-button:hover {
+    background: linear-gradient(90deg, #e52e71, #ff8a00);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(229, 46, 113, 0.4);
+  }
+  
+  .submit-button:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 10px rgba(229, 46, 113, 0.4);
+  }
+  
+  .submit-button:disabled {
+    background: #888;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+  
+  .links {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .link {
+    color: #00d5ff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
+  
+  .link:hover {
+    color: #ff8a00;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-80%) translateX(-50%) scale(0.8);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(-50%) translateX(-50%) scale(1);
+    }
+  }

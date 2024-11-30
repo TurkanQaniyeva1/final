@@ -1,0 +1,150 @@
+
+
+footer {
+    position: relative; 
+    background-color: #1c1c1c;
+    color: #b3b3b3;
+    padding: 20px 30px;
+    font-family: Arial, sans-serif;
+    height: auto;
+}
+
+footer::before {
+    content: "";
+    position: absolute;
+    top: 0; 
+    left: 0;
+    width: 100%;
+    height: 3px; 
+    background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet, red); /* RGB rənglər */
+    background-size: 200%;
+    animation: rgb-line 5s linear infinite; 
+}
+
+@keyframes rgb-line {
+    0% {
+        background-position: 0%;
+    }
+    100% {
+        background-position: 200%;
+    }
+}
+
+
+.secial-icons {
+    margin: 20px 0px;
+    padding: 10px 0px;
+}
+
+.secial-icons a {
+    margin: 0 10px;
+    color: #b3b3b3;
+    font-size: 30px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.secial-icons a:hover {
+    color: #ffffff;
+}
+
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: 20px;
+    padding: 20px 0px;
+    position: relative;
+    gap: 20px;
+}
+
+.footer-links::after{
+    content: "";
+    position: absolute;
+    bottom: 10px;
+    width: 95%;
+    height: 1px;
+    background-color: #b3b3b342;
+}
+
+.resources {
+    margin-bottom: 20px;
+}
+
+.resources h3 {
+    font-size: 16px;
+    color: #ffffff;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.columns {
+    display: flex;
+    gap: 20px;
+}
+
+.columns ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.columns ul li {
+    margin-bottom: 8px;
+}
+
+.columns ul li a {
+    text-decoration: none;
+    color: #b3b3b3;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.columns ul li a:hover {
+    color: #ffffff;
+}
+
+.first-column, .second-column, .third-column {
+    margin-right: 20px;
+}
+
+
+.copyright-content{
+    margin: 0px 20px;
+    width: 50%;
+}
+
+.foot-copyright{
+    width: 100%;
+    margin: 30px 0px;
+}
+
+.foot-copyright .copyright-content p{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 5px 0px;
+    color: #ffffffa8;
+    font-size: 11px;
+}
+
+.legal {
+    width: 90%;
+    margin: 30px 20px;
+}
+
+.legal .legal-links{
+    display: flex;
+    gap: 20px;
+    padding-top: 20px;
+}
+
+.legal .legal-links li a{
+    color: #868686;
+    font-size: 13px;
+    transition: color 0.3s ease;
+}
+
+.legal .legal-links li a:hover{
+    color: #ffffff;
+}
