@@ -19,36 +19,36 @@ const AdminLogin: React.FC = () => {
       localStorage.setItem("isAdminLoggedIn", "true");
       navigate("/admin");
     } else {
-      alert("İstifadəçi adı və ya şifrə səhvdir.");
+      alert("Username or password is incorrect.");
     }
   };
 
   return (
     <div className="login-container">
       <div className="login-box">
-        <h2 className="login-title">Admin Panel Girişi</h2>
+        <h2 className="login-title">Admin Panel Login</h2>
         <div className="input-group">
-          <label htmlFor="username">İstifadəçi Adı</label>
+          <label htmlFor="username">Username</label>
           <input
             type="text"
             id="username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            placeholder="Admin istifadəçi adını daxil edin"
+            placeholder="Enter admin username"
           />
         </div>
         <div className="input-group">
-          <label htmlFor="password">Şifrə</label>
+          <label htmlFor="password">Password</label>
           <input
             type="password"
             id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            placeholder="Şifrənizi daxil edin"
+            placeholder="Enter your password"
           />
         </div>
         <button className="login-button" onClick={handleLogin}>
-          Daxil ol
+          Login
         </button>
       </div>
     </div>

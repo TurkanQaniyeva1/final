@@ -1,4 +1,3 @@
-/* Ümumi düymə tərzi */
 button {
     outline: none;
     border: none;
@@ -11,8 +10,8 @@ button {
   }
   
   button.active {
-    background-color: #1d4ed8; /
-    color: #ffffff;
+    background-color: #1d4ed8; 
+    color: black;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
   
@@ -34,3 +33,7 @@ button {
     margin-bottom: 20px;
   }
   
+  button{
+    color: #1d4ed8;
+    background-color: #d1d5db;
+  }

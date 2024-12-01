@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import "./register.css";
@@ -54,7 +54,7 @@ const RegisterForm: React.FC = () => {
         body: JSON.stringify(payload),
       });
 
-      setIsSuccess(true); 
+      setIsSuccess(true);
       setTimeout(() => {
         navigate("/login");
       }, 2000);
@@ -68,74 +68,60 @@ const RegisterForm: React.FC = () => {
   };
 
   return (
-    <div className="register-container">
+    <div className="auth-container"> 
       {isSuccess && (
         <div
-          className="fixed top-4 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg animate-fade-in"
+          className="alert-success"
           role="alert"
         >
           Registration completed successfully!
         </div>
       )}
 
-      <h1 className="register-title">Create an Account</h1>
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={handleSubmit}
-      >
+      <h1 className="auth-title">Sign Up</h1>
+      <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
         {({ isSubmitting }) => (
-          <Form className="register-form">
+          <Form className="auth-form"> 
             <div className="form-group">
-              <label htmlFor="gameName" className="label">
-                Game Name (optional)
-              </label>
+              <label htmlFor="gameName" className="label">Game Name (optional)</label>
               <Field type="text" name="gameName" className="input-field" />
               <ErrorMessage name="gameName" component="div" className="error-message" />
             </div>
 
             <div className="form-group">
-              <label htmlFor="firstName" className="label">
-                First Name
-              </label>
+              <label htmlFor="firstName" className="label">First Name</label>
               <Field type="text" name="firstName" className="input-field" />
               <ErrorMessage name="firstName" component="div" className="error-message" />
             </div>
 
             <div className="form-group">
-              <label htmlFor="lastName" className="label">
-                Last Name
-              </label>
+              <label htmlFor="lastName" className="label">Last Name</label>
               <Field type="text" name="lastName" className="input-field" />
               <ErrorMessage name="lastName" component="div" className="error-message" />
             </div>
 
             <div className="form-group">
-              <label htmlFor="email" className="label">
-                Email Address
-              </label>
+              <label htmlFor="email" className="label">Email Address</label>
               <Field type="email" name="email" className="input-field" />
               <ErrorMessage name="email" component="div" className="error-message" />
             </div>
 
             <div className="form-group">
-              <label htmlFor="password" className="label">
-                Password
-              </label>
+              <label htmlFor="password" className="label">Password</label>
               <Field type="password" name="password" className="input-field" />
               <ErrorMessage name="password" component="div" className="error-message" />
             </div>
 
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="submit-button"
-            >
+            <button type="submit" disabled={isSubmitting} className="auth-button">
               {isSubmitting ? "Loading..." : "Register"}
             </button>
           </Form>
         )}
       </Formik>
+
+      <div className="auth-footer">
+        <p>Already have an account? <Link to="/login" className="auth-link">Log In</Link></p>
+      </div>
     </div>
   );
 };

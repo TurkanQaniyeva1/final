@@ -34,39 +34,42 @@ const Login: React.FC = () => {
   }, [userData, navigate]);
 
   return (
-    <div className="login">
-      <div className="login-container">
-        <h1 className="login-title">Login</h1>
+    <div className="dark-login">
+      <div className="dark-login-container">
+        <h1 className="dark-login-title">Login</h1>
         <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
           {({ isSubmitting }) => (
-            <Form className="login-form">
-              <div className="form-group">
+            <Form className="dark-login-form">
+              <div className="dark-form-group">
                 <label htmlFor="email">Email address</label>
-                <Field type="email" name="email" className="input-field" />
-                <ErrorMessage name="email" component="div" className="error-message" />
+                <Field type="email" name="email" className="dark-input-field" />
+                <ErrorMessage name="email" component="div" className="dark-error-message" />
               </div>
-              <div className="form-group password-group">
+              <div className="dark-form-group">
                 <label htmlFor="password">Password</label>
-                <div className="password-wrapper">
+                <div className="dark-password-wrapper">
                   <Field
                     type={showPassword ? "text" : "password"}
                     name="password"
-                    className="input-field"
+                    className="dark-input-field"
                   />
-                  <span className="password-icon" onClick={togglePasswordVisibility}>
+                  <span className="dark-password-icon" onClick={togglePasswordVisibility}>
                     {showPassword ? <AiFillEyeInvisible /> : <AiFillEye />}
                   </span>
                 </div>
-                <ErrorMessage name="password" component="div" className="error-message" />
+                <ErrorMessage name="password" component="div" className="dark-error-message" />
               </div>
-              {loading && <div className="loading-message">Logging in...</div>}
-              {error && <div className="error-message">{error}</div>}
-              <button type="submit" disabled={isSubmitting || loading} className="submit-button">
+              {loading && <div className="dark-loading-message">Logging in...</div>}
+              {error && <div className="dark-error-message">{error}</div>}
+              <button type="submit" disabled={isSubmitting || loading} className="dark-submit-button">
                 Log In
               </button>
             </Form>
           )}
         </Formik>
+        <div className="dark-register-link">
+          <p>Don't have an account? <a href="/register">Register here</a></p>
+        </div>
       </div>
     </div>
   );

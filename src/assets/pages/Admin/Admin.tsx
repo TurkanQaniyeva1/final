@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import AdminHeader from "./components/AdminHeader/AdminHeader";
-import UserTable from "./components/UserTable/Usertable";
-import GameList from "./components/GameList/Gamelist";
+import UserTable from "./components/UserTable/UserTable";
+import GameList from "./components/GameList/GameList";
 import AdminRoles from "./components/AdminRoles/AdminRoles";
 import "./admin.css";
 
@@ -33,7 +33,7 @@ const Admin: React.FC = () => {
                 activeTab === "users" ? "bg-blue-600" : "bg-gray-700"
               } hover:bg-blue-500 transition-all`}
             >
-              İstifadəçilər
+              Users
             </button>
             <button
               onClick={() => setActiveTab("games")}
@@ -41,7 +41,7 @@ const Admin: React.FC = () => {
                 activeTab === "games" ? "bg-blue-600" : "bg-gray-700"
               } hover:bg-blue-500 transition-all`}
             >
-              Oyunlar
+              Games
             </button>
             <button
               onClick={() => setActiveTab("roles")}
@@ -49,7 +49,7 @@ const Admin: React.FC = () => {
                 activeTab === "roles" ? "bg-blue-600" : "bg-gray-700"
               } hover:bg-blue-500 transition-all`}
             >
-              Rollar
+              Roles
             </button>
           </nav>
           {renderContent()}

@@ -47,9 +47,7 @@ const Slider: React.FC = () => {
                   <a href="#" className="learn">
                     Learn More
                   </a>
-                  <a href="#" className="wishlist">
-                    Add to Wishlist
-                  </a>
+                  
                 </div>
               </div>
               {item.image && (

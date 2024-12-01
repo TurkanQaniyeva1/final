@@ -2,6 +2,11 @@ export const FETCH_USER_START = "FETCH_USER_START";
 export const FETCH_USER_SUCCESS = "FETCH_USER_SUCCESS";
 export const FETCH_USER_ERROR = "FETCH_USER_ERROR";
 
+export const FETCH_USERS_START = "FETCH_USERS_START";
+export const FETCH_USERS_SUCCESS = "FETCH_USERS_SUCCESS";
+export const FETCH_USERS_ERROR = "FETCH_USERS_ERROR";
+
+// Fetch single user action
 export const fetchUser = (email: string, password: string) => async (dispatch: (action: any) => void) => {
   const apiUrl = "https://6748a18c5801f5153591ac77.mockapi.io/epic-users/Users";
 
@@ -41,5 +46,25 @@ export const fetchUser = (email: string, password: string) => async (dispatch: (
     }
   } catch (error: any) {
     dispatch({ type: FETCH_USER_ERROR, payload: error.message || "Unknown error occurred" });
+  }
+};
+
+// Fetch multiple users action
+export const fetchUsers = () => async (dispatch: (action: any) => void) => {
+  const apiUrl = "https://6748a18c5801f5153591ac77.mockapi.io/epic-users/Users";
+
+  dispatch({ type: FETCH_USERS_START });
+
+  try {
+    const response = await fetch(apiUrl);
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch users data");
+    }
+
+    const users = await response.json();
+    dispatch({ type: FETCH_USERS_SUCCESS, payload: users });
+  } catch (error: any) {
+    dispatch({ type: FETCH_USERS_ERROR, payload: error.message || "Unknown error occurred" });
   }
 };

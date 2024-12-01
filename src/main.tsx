@@ -14,6 +14,7 @@ import NotFound from "./assets/pages/NotFound/NotFound";
 import ProfilePage from "./assets/pages/Profile/Profile";
 import AdminLogin from "./assets/pages/Admin/components/AdminLogin/AdminLogin";
 import ProtectedRoute from "./assets/pages/Admin/ProtectedRoute";
+import Detail from "./assets/pages/Detail/Detail";
 
 const isLoggedIn = localStorage.getItem("isAdminLoggedIn") === "true";
 
@@ -31,6 +32,7 @@ if (container) {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path="/browse"/>
           <Route
             path="/admin"
             element={
@@ -42,6 +44,8 @@ if (container) {
           <Route path="*" element={<NotFound />} />
           <Route path="/profile/:id" element={<><Header /><ProfilePage /><Footer /></>} />
           <Route path="/profile" element={<><Header /><ProfilePage /><Footer /></>} />
+          <Route path="/detail/:id" element={<Detail />} />
+
 
 
         </Routes>
