@@ -1,5 +1,5 @@
-import Slider from '../../companents/Slider/Slider';
-import Carousel from '../../companents/Crousel/Carousel';
+import Slider from '../../features/Slider/Slider';
+import Carousel from '../../features/Crousel/Carousel';
 import "./home.css"
 
 const Home = () => {

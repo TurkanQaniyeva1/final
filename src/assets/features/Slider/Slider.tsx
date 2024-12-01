@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchSliderData } from '../../features/actions/sliderAction';
+import { fetchSliderData } from '../../store/actions/sliderAction';
 import { AppDispatch, RootState } from '../../store/store';
 import './slider.css';
 

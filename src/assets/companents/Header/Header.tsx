@@ -2,11 +2,18 @@ import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store/store";
 import { MdKeyboardArrowLeft } from "react-icons/md";
-import { FaSearch } from "react-icons/fa";
 import epicLogo from "../../img/logo/epic.png";
 import "./head.css";
-import { fetchMenuData } from "../../features/actions/menuAction";
+import { fetchMenuData } from "../../store/actions/menuAction";
 import { useNavigate, useLocation } from "react-router-dom";
+import SearchBar from "../../features/SearchBar/SearchBar";
+
+type User = {
+  name: string;
+  avatar: string;
+  gameName: string;
+  balance: number;
+};
 
 const Header: React.FC = () => {
   const navigate = useNavigate();
@@ -14,7 +21,7 @@ const Header: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const menuData = useSelector((state: RootState) => state.menu.menuData);
 
-  const [user, setUser] = useState<{ name: string; avatar: string } | null>(null);
+  const [user, setUser] = useState<User | null>(null);
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const [isDistributeDropdownVisible, setIsDistributeDropdownVisible] = useState(false);
 
@@ -26,16 +33,6 @@ const Header: React.FC = () => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) setUser(JSON.parse(storedUser));
   }, [dispatch]);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const header = document.getElementById("scrol");
-      if (header) header.classList.toggle("headerAnime", window.scrollY > 100);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -54,19 +51,9 @@ const Header: React.FC = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const handleLogin = () => {
-    navigate("/login");
-  };
-
-  const toggleDropdown = () => setIsDropdownVisible(!isDropdownVisible);
+  const toggleDropdown = () => setIsDropdownVisible((prev) => !prev);
   const toggleDistributeDropdown = () =>
-    setIsDistributeDropdownVisible(!isDistributeDropdownVisible);
-
-  const handleLogout = () => {
-    localStorage.removeItem("user");
-    setUser(null);
-    navigate("/login");
-  };
+    setIsDistributeDropdownVisible((prev) => !prev);
 
   return (
     <header>
@@ -78,25 +65,19 @@ const Header: React.FC = () => {
           />
           {menuData && (
             <div
-              className={`dropdown-menu ${
-                isDropdownVisible ? "dropdown-open" : "dropdown-close"
-              }`}
+              className={`dropdown-menu ${isDropdownVisible ? "dropdown-open" : "dropdown-close"}`}
             >
               {["play", "discover", "create"].map((section) => (
                 <div className="dropdown-section" key={section}>
                   <h4>{section.charAt(0).toUpperCase() + section.slice(1)}</h4>
                   <ul>
-                    {menuData[section as keyof typeof menuData]?.map((item, index) => (
+                    {menuData[section]?.map((item:any, index:string) => (
                       <li key={index}>
                         {item.image && (
-                          <img
-                            src={item.image}
-                            alt={item.name}
-                            className="menu-item-image"
-                          />
+                          <img src={item.image} alt={item.name} className="menu-item-image" />
                         )}
                         <span>
-                          <a href="#">{item.name}</a>
+                          <a href={item.link || "#"}>{item.name}</a>
                         </span>
                       </li>
                     ))}
@@ -109,10 +90,7 @@ const Header: React.FC = () => {
 
         <div className="menu">
           <a href="#" className="menu-item">
-            <img
-              src="https://cms-assets.unrealengine.com/qAiDvosPSFGqJxTVuY7h"
-              alt="Support"
-            />
+            <img src="https://cms-assets.unrealengine.com/qAiDvosPSFGqJxTVuY7h" alt="Support" />
           </a>
           <a href="#" className="menu-item">
             Support
@@ -124,19 +102,18 @@ const Header: React.FC = () => {
           >
             Distribute
             <MdKeyboardArrowLeft
-              className={`arrow ${
-                isDistributeDropdownVisible ? "arrow-open" : "arrow-close"
-              }`}
+              className={`arrow ${isDistributeDropdownVisible ? "arrow-open" : "arrow-close"}`}
             />
             {menuData?.distribute && (
               <div
-                className={`dropdown-menu-distribute ${
-                  isDistributeDropdownVisible ? "dropdown-open" : "dropdown-close"
-                }`}
+                className={`dropdown-menu-distribute ${isDistributeDropdownVisible ? "dropdown-open" : "dropdown-close"
+                  }`}
               >
-                {menuData.distribute.map((item, index) => (
+                {menuData.distribute.map((item:any, index:string) => (
                   <div className="dropdown-item" key={index}>
-                    <span>{item.name}</span>
+                    <span>
+                      <a href={item.link || "#"}>{item.name}</a>
+                    </span>
                   </div>
                 ))}
               </div>
@@ -146,20 +123,24 @@ const Header: React.FC = () => {
 
         <div className="buttons">
           {user ? (
-            <div className="user-info">
+            <div className="user-info" onClick={() => navigate("/profile")}>
               <img src={user.avatar} alt="Profile" className="profile-avatar" />
               <span className="user-name">{user.gameName}</span>
               <span className="user-balance">{user.balance}$</span>
-              {/* <button className="logout" onClick={handleLogout}>
-                Logout
-              </button> */}
             </div>
           ) : (
-            <button className="sign-in" onClick={handleLogin}>
+            <button className="sign-in" onClick={() => navigate("/login")}>
               <span>Sign in</span>
             </button>
           )}
-          <button className="download">
+          <button 
+          className="download"
+          style={{
+            display:"flex",
+            justifyContent:"center",
+            alignItems:"center",
+            backgroundColor:"#212121",
+          }}>
             <a href="https://launcher-public-service-prod06.ol.epicgames.com/launcher/api/installer/download/EpicGamesLauncherInstaller.msi?trackingId=47ee9210e8e543338065b1c156099a16">
               Download
             </a>
@@ -169,10 +150,7 @@ const Header: React.FC = () => {
 
       <div className="bottom" id="scrol">
         <div className="bar">
-          <div className="search-bar">
-            <FaSearch className="search-icon" />
-            <input type="text" placeholder="Search store" />
-          </div>
+          <SearchBar />
           <div className="menu-item">
             <a
               href="discover"
@@ -184,10 +162,19 @@ const Header: React.FC = () => {
           <div className="menu-item">
             <a href="/browse">Browse</a>
           </div>
-          <div className="menu-item">
-            <a href="#">News</a>
-          </div>
+
+          {user && (
+            <>
+              <div className="menu-item">
+                <a href="/wishlist">Wishlist</a>
+              </div>
+              <div className="menu-item">
+                <a href="/cart">Cart</a>
+              </div>
+            </>
+          )}
         </div>
+
       </div>
     </header>
   );

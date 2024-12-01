@@ -383,6 +383,7 @@ header .top .logo .dropdown-menu .dropdown-section ul li img {
     background-color: #a8a8a82c;
     padding: 6px 10px;
     border-radius: 10px;
+    cursor: pointer;
   }
 
   .user-balance{

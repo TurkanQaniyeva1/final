@@ -1,13 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { menuReducer } from '../features/reducer/menuReducer';
-import sliderReducer from '../features/reducer/sliderReducer';
-import { carouselReducer } from '../features/reducer/carouselReducer';
+import { menuReducer } from './reducers/menuReducer';
+import sliderReducer from './reducers/sliderReducer';
+import { carouselReducer } from './reducers/carouselReducer';
+import { userReducer } from './reducers/userReducer';
 
 export const store = configureStore({
   reducer: {
     menu: menuReducer,
     slider: sliderReducer,
-    carousel: carouselReducer,
+    carouselData: carouselReducer,
+    user: userReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
 });

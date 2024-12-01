@@ -1,0 +1,399 @@
+.profile-container {
+  display: flex;
+  overflow: hidden;
+}
+
+.profile-sidebar {
+  width: 250px;
+  background-color: #161b22;
+  padding: 20px;
+  position: relative;
+  transition: transform 0.6s ease-in-out;
+  transform: translateX(-100%);
+  animation: slideIn 1s forwards;
+  display: flex;
+  align-items: center;
+}
+
+@keyframes slideIn {
+  to {
+    transform: translateX(0);
+  }
+}
+
+.profile-nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.profile-nav-item {
+  padding: 15px 0;
+  cursor: pointer;
+  color: #58a6ff;
+  font-size: 18px;
+  text-align: center;
+  border-bottom: 1px solid #21262d;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.profile-nav-item:hover {
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+/* Main Section */
+.profile-main {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(120deg, #161b22 40%, #21262d 100%);
+  animation: fadeIn 1s forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.profile-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 4px solid #58a6ff;
+  transition: transform 0.3s ease;
+  animation: pulse 2s infinite alternate;
+}
+
+@keyframes pulse {
+  to {
+    transform: scale(1.05);
+  }
+}
+
+.profile-username {
+  font-size: 28px;
+  color: #c9d1d9;
+}
+
+.profile-balance {
+  color: #8b949e;
+  font-size: 20px;
+}
+
+.profile-games-section,
+.profile-wishlist-section,
+.profile-cart-section {
+  margin-top: 30px;
+}
+
+.profile-section-title {
+  font-size: 24px;
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+  color: #c9d1d9;
+  border-bottom: 2px solid #58a6ff;
+  display: inline-block;
+}
+
+.profile-games-list,
+.profile-wishlist-list,
+.profile-cart-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+}
+
+.profile-game-card,
+.profile-item-card {
+  background-color: #21262d;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.profile-game-card:hover,
+.profile-item-card:hover {
+  transform: translateY(-12px) scale(1.05);
+  border-color: #58a6ff;
+  box-shadow: 0 12px 30px rgba(88, 166, 255, 0.3);
+}
+
+.profile-game-card img,
+.profile-item-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  transition: transform 0.3s ease;
+}
+
+.profile-game-card:hover img,
+.profile-item-card:hover img {
+  transform: scale(1.1);
+}
+
+.profile-game-card h3,
+.profile-item-card h3 {
+  font-size: 20px;
+  color: #fff;
+  margin-top: 10px;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.profile-game-card:hover h3,
+.profile-item-card:hover h3 {
+  color: #58a6ff;
+}
+
+.profile-game-card p,
+.profile-item-card p {
+  color: #8b949e;
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+.profile-game-card .price,
+.profile-item-card .price {
+  font-size: 18px;
+  font-weight: bold;
+  color: #58a6ff;
+  margin-top: 10px;
+  transition: color 0.3s ease;
+}
+
+.profile-game-card:hover .price,
+.profile-item-card:hover .price {
+  color: #ffffff;
+}
+
+.profile-game-card:before,
+.profile-item-card:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.profile-game-card:hover:before,
+.profile-item-card:hover:before {
+  opacity: 1;
+}
+
+.form-input {
+  background-color: #292d33;
+  width: 100%;
+  height: 50px;
+  padding: 12px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  transition: background 0.3s ease;
+}
+
+.form-input:focus {
+  background-color: #21262d;
+}
+
+.submit-button {
+  background-color: #58a6ff;
+  border: none;
+  padding: 15px;
+  width: 100%;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: #1f6feb;
+}
+
+.profile-item-card {
+  background-color: #21262d;
+  padding: 20px;
+  border-radius: 20px;
+  text-align: center;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.profile-item-card:hover {
+  transform: translateY(-12px) scale(1.05);
+  border-color: #58a6ff;
+  box-shadow: 0 12px 30px rgba(88, 166, 255, 0.3);
+}
+
+.wishlist-item-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  transition: transform 0.3s ease;
+}
+
+.profile-item-card:hover .wishlist-item-image {
+  transform: scale(1.1);
+}
+
+.wishlist-item-name {
+  font-size: 20px;
+  color: #fff;
+  margin-top: 10px;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.profile-item-card:hover .wishlist-item-name {
+  color: #58a6ff;
+}
+
+.wishlist-item-price {
+  color: #8b949e;
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+.profile-item-card {
+  position: relative;
+}
+
+.remove-icon {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 25px;
+  color: red;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.profile-item-card.hovered .remove-icon {
+  opacity: 1;
+}
+
+.profile-edit-section {
+  padding: 20px;
+}
+
+.profile-edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 400px;
+  color: #161b22;
+}
+
+.profile-save-button {
+  padding: 10px 20px;
+  width: 400px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.profile-save-button:hover {
+  background-color: #45a049;
+}
+
+.profile-item-card {
+  position: relative;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.profile-item-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.wishlist-item-image {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.wishlist-item-name,
+.wishlist-item-price {
+  margin: 5px 0;
+  font-size: 16px;
+}
+
+.remove-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 18px;
+  color: #ff4d4d;
+  cursor: pointer;
+  background: #fff;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  padding: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.remove-icon:hover {
+  background: #ff4d4d;
+  color: #fff;
+  transition: all 0.2s ease;
+}
