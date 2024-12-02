@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCarouselData } from "../../../../store/actions/carouselAction";
 import { selectCarouselItems } from "../../../../store/Selectors/carouselSelector";
-import axios from "axios"; // Axios API çağırışları üçün istifadə olunur
+import axios from "axios";
 import "./game.css";
 
 interface Game {
@@ -14,6 +14,39 @@ interface Game {
   description: string;
   media: string;
 }
+
+const Notification: React.FC<{ message: string; onClose: () => void }> = ({ message, onClose }) => {
+  return (
+    <div
+      className="notification"
+      style={{
+        animation: "fadeInOut 3s",
+        backgroundColor: "green",
+        color: "white",
+        padding: "10px",
+        borderRadius: "5px",
+        position: "fixed",
+        top: "20px",
+        right: "20px",
+        zIndex: 1000,
+      }}
+    >
+      {message}
+      <button
+        onClick={onClose}
+        style={{
+          marginLeft: "10px",
+          background: "transparent",
+          color: "white",
+          border: "none",
+          cursor: "pointer",
+        }}
+      >
+        ✖
+      </button>
+    </div>
+  );
+};
 
 const GameList: React.FC = () => {
   const dispatch = useDispatch();
@@ -29,6 +62,7 @@ const GameList: React.FC = () => {
     media: "",
   });
   const [isEditing, setIsEditing] = useState(false);
+  const [notification, setNotification] = useState<string | null>(null);
 
   useEffect(() => {
     dispatch(fetchCarouselData("https://673a25baa3a36b5a62f0de6a.mockapi.io/New-Games"));
@@ -38,19 +72,32 @@ const GameList: React.FC = () => {
     setGames(itemsFromStore);
   }, [itemsFromStore]);
 
-  // Yeni oyun əlavə etmək və ya mövcud oyunu redaktə etmək üçün
   const saveGame = async () => {
     try {
       if (isEditing) {
-        // Redaktə edilən oyun üçün PUT sorğusu
-        await axios.put(
+        console.log("Editing game:", newGame);
+        const response = await axios.put(
           `https://673a25baa3a36b5a62f0de6a.mockapi.io/New-Games/${newGame.id}`,
+          {
+            name: newGame.name,
+            price: newGame.price,
+            image: newGame.image,
+            category: newGame.category,
+            description: newGame.description,
+            media: newGame.media,
+          }
+        );
+        console.log("Edit response:", response.data);
+        setNotification("Game updated successfully!");
+      } else {
+        const response = await axios.post(
+          "https://673a25baa3a36b5a62f0de6a.mockapi.io/New-Games",
           newGame
         );
-      } else {
-        // Yeni oyun üçün POST sorğusu
-        await axios.post("https://673a25baa3a36b5a62f0de6a.mockapi.io/New-Games", newGame);
+        console.log("Add response:", response.data);
+        setNotification("Game added successfully!");
       }
+
       dispatch(fetchCarouselData("https://673a25baa3a36b5a62f0de6a.mockapi.io/New-Games"));
       setShowModal(false);
       setNewGame({
@@ -64,6 +111,7 @@ const GameList: React.FC = () => {
       setIsEditing(false);
     } catch (error) {
       console.error("Error saving game:", error);
+      setNotification("Error saving the game!");
     }
   };
 
@@ -71,8 +119,10 @@ const GameList: React.FC = () => {
     try {
       await axios.delete(`https://673a25baa3a36b5a62f0de6a.mockapi.io/New-Games/${id}`);
       dispatch(fetchCarouselData("https://673a25baa3a36b5a62f0de6a.mockapi.io/New-Games"));
+      setNotification("Game deleted successfully!");
     } catch (error) {
       console.error("Error deleting game:", error);
+      setNotification("Error deleting the game!");
     }
   };
 
@@ -181,6 +231,10 @@ const GameList: React.FC = () => {
             </button>
           </div>
         </div>
+      )}
+
+      {notification && (
+        <Notification message={notification} onClose={() => setNotification(null)} />
       )}
     </div>
   );

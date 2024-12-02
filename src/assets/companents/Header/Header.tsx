@@ -89,7 +89,7 @@ const Header: React.FC = () => {
         </div>
 
         <div className="menu">
-          <a href="#" className="menu-item">
+          <a href="/" className="menu-item">
             <img src="https://cms-assets.unrealengine.com/qAiDvosPSFGqJxTVuY7h" alt="Support" />
           </a>
           <a href="#" className="menu-item">

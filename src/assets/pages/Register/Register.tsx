@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { FaEye, FaEyeSlash } from "react-icons/fa"; // React Icons əlavə edilib
 import "./register.css";
 
 const validationSchema = Yup.object().shape({
@@ -14,6 +15,7 @@ const validationSchema = Yup.object().shape({
 
 const RegisterForm: React.FC = () => {
   const [isSuccess, setIsSuccess] = useState(false);
+  const [showPassword, setShowPassword] = useState(false); // Şifrə görünüşü üçün state
   const navigate = useNavigate();
 
   const initialValues = { firstName: "", lastName: "", email: "", password: "", gameName: "" };
@@ -68,12 +70,9 @@ const RegisterForm: React.FC = () => {
   };
 
   return (
-    <div className="auth-container"> 
+    <div className="auth-container">
       {isSuccess && (
-        <div
-          className="alert-success"
-          role="alert"
-        >
+        <div className="alert-success" role="alert">
           Registration completed successfully!
         </div>
       )}
@@ -81,7 +80,7 @@ const RegisterForm: React.FC = () => {
       <h1 className="auth-title">Sign Up</h1>
       <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
         {({ isSubmitting }) => (
-          <Form className="auth-form"> 
+          <Form className="auth-form">
             <div className="form-group">
               <label htmlFor="gameName" className="label">Game Name (optional)</label>
               <Field type="text" name="gameName" className="input-field" />
@@ -108,7 +107,23 @@ const RegisterForm: React.FC = () => {
 
             <div className="form-group">
               <label htmlFor="password" className="label">Password</label>
-              <Field type="password" name="password" className="input-field" />
+              <div className="password-wrapper">
+                <Field
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  className="input-field"
+                />
+                <button 
+                style={{
+                  backgroundColor: "transparent"
+                }}
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="password-toggle"
+                >
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                </button>
+              </div>
               <ErrorMessage name="password" component="div" className="error-message" />
             </div>
 

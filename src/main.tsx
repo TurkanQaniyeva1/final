@@ -15,6 +15,8 @@ import ProfilePage from "./assets/pages/Profile/Profile";
 import AdminLogin from "./assets/pages/Admin/components/AdminLogin/AdminLogin";
 import ProtectedRoute from "./assets/pages/Admin/ProtectedRoute";
 import Detail from "./assets/pages/Detail/Detail";
+import Wishlist from "./assets/features/Wishlist/Wishlist";
+import Cart from "./assets/features/Cart/Cart";
 
 const isLoggedIn = localStorage.getItem("isAdminLoggedIn") === "true";
 
@@ -32,7 +34,6 @@ if (container) {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/admin/login" element={<AdminLogin />} />
-          <Route path="/browse"/>
           <Route
             path="/admin"
             element={
@@ -45,6 +46,8 @@ if (container) {
           <Route path="/profile/:id" element={<><Header /><ProfilePage /><Footer /></>} />
           <Route path="/profile" element={<><Header /><ProfilePage /><Footer /></>} />
           <Route path="/detail/:id" element={<Detail />} />
+          <Route path="/wishlist" element={<><Header/> <Wishlist /> <Footer/></>} />
+          <Route path="/cart" element={<><Header/> <Cart /> <Footer/></>} />
 
 
 

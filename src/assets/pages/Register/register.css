@@ -94,3 +94,22 @@
   font-size: 16px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+.password-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.password-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  color: #333;
+}
+
+.form-group input{
+  color: #fff !important;
+}

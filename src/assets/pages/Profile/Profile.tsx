@@ -82,7 +82,7 @@ const ProfilePage: React.FC = () => {
             >
               <div className="form-group">
                 <label>First Name:</label>
-                <input
+                <input className="edit-label"
                   type="text"
                   value={user?.firstName || ""}
                   onChange={(e) =>
@@ -92,7 +92,7 @@ const ProfilePage: React.FC = () => {
               </div>
               <div className="form-group">
                 <label>Last Name:</label>
-                <input
+                <input className="edit-label"
                   type="text"
                   value={user?.lastName || ""}
                   onChange={(e) =>
@@ -102,7 +102,7 @@ const ProfilePage: React.FC = () => {
               </div>
               <div className="form-group">
                 <label>Email:</label>
-                <input
+                <input className="edit-label"
                   type="email"
                   value={user?.email || ""}
                   onChange={(e) =>
@@ -112,7 +112,7 @@ const ProfilePage: React.FC = () => {
               </div>
               <div className="form-group">
                 <label>Avatar URL:</label>
-                <input
+                <input className="edit-label"
                   type="text"
                   value={user?.avatar || ""}
                   onChange={(e) =>
@@ -159,7 +159,6 @@ const ProfilePage: React.FC = () => {
                   >
                     <img className="wishlist-item-image" src={item.image} alt={item.name} />
                     <h3 className="wishlist-item-name">{item.name}</h3>
-                    <p className="wishlist-item-price">${item.price}</p>
                     <span
                       className="remove-icon"
                       onClick={() => handleRemoveFromWishlist(item.id)}

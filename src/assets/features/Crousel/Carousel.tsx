@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -15,6 +15,7 @@ const Carousel: React.FC = () => {
   const navigate = useNavigate();
   const itemsFromStore = useSelector(selectCarouselItems);
   const swiperRef = useRef<any>(null);
+  const [notification, setNotification] = useState<string | null>(null);
 
   useEffect(() => {
     dispatch(fetchCarouselData("https://673a25baa3a36b5a62f0de6a.mockapi.io/New-Games"));
@@ -34,22 +35,75 @@ const Carousel: React.FC = () => {
     }
   };
 
+  const showNotification = (message: string) => {
+    setNotification(message);
+    setTimeout(() => setNotification(null), 3000);
+  };
+
+  const syncUserDataWithAPI = async (userData: any) => {
+    try {
+      const response = await fetch(`https://example.com/api/users/${userData.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userData),
+      });
+  
+      if (!response.ok) {
+        throw new Error("Failed to sync data with API");
+      }
+  
+      console.log("User data synced successfully");
+    } catch (error) {
+      console.error("Error syncing user data:", error);
+    }
+  };
+  
   const handleAddToCart = (item: any) => {
-    // Dispatch action to add item to cart
-    console.log("Added to Cart:", item);
-    // You could dispatch an action here to update the Redux store for cart
+    try {
+      const userData = JSON.parse(localStorage.getItem("user") || "{}");
+  
+      if (!userData || !userData.isLoggedIn) {
+        navigate("/login");
+        return;
+      }
+  
+      const updatedCart = [...(userData.cart || []), item];
+      const updatedUserData = { ...userData, cart: updatedCart };
+      localStorage.setItem("user", JSON.stringify(updatedUserData));
+  
+      syncUserDataWithAPI(updatedUserData);
+  
+      showNotification(`${item.name} added to Cart`);
+    } catch (error) {
+      console.error("Error adding to cart:", error);
+    }
   };
-
+  
   const handleAddToWishlist = (item: any) => {
-    // Dispatch action to add item to wishlist
-    console.log("Added to Wishlist:", item);
-    // You could dispatch an action here to update the Redux store for wishlist
+    try {
+      const userData = JSON.parse(localStorage.getItem("user") || "{}");
+  
+      if (!userData || !userData.isLoggedIn) {
+        navigate("/login");
+        return;
+      }
+  
+      const updatedWishlist = [...(userData.wishlist || []), item];
+      const updatedUserData = { ...userData, wishlist: updatedWishlist };
+      localStorage.setItem("user", JSON.stringify(updatedUserData));
+  
+      syncUserDataWithAPI(updatedUserData);
+  
+      showNotification(`${item.name} added to Wishlist`);
+    } catch (error) {
+      console.error("Error adding to wishlist:", error);
+    }
   };
-
-  const handleCardClick = (item: any) => {
-    // Navigate to the detail page
-    navigate(`/detail/${item.id}`);
-  };
+  
+  
+  
 
   if (!itemsFromStore.length) {
     return <div>Loading...</div>;
@@ -57,6 +111,7 @@ const Carousel: React.FC = () => {
 
   return (
     <div className="carousel">
+      {notification && <div className="notification">{notification}</div>}
       <div className="carousel-navigation">
         <button className="custom-button prev" onClick={handlePrev}>
           <GrFormPrevious />
@@ -83,7 +138,7 @@ const Carousel: React.FC = () => {
       >
         {itemsFromStore.map((item: any) => (
           <SwiperSlide key={item.id}>
-            <div className="carousel-item" onClick={() => handleCardClick(item)}>
+            <div className="carousel-item">
               <span className="add-cart" onClick={(e) => { e.stopPropagation(); handleAddToCart(item); }}>
                 <IoCartOutline />
               </span>
@@ -93,11 +148,8 @@ const Carousel: React.FC = () => {
               >
                 <MdOutlineAdd />
               </span>
-              <div style={{
-                overflow: 'hidden',
-              }}>
+              <div style={{ overflow: "hidden" }}>
                 <img src={item.image} alt={item.name} className="carousel-image" />
-
               </div>
               <div className="carousel-content">
                 <span className="carousel-category">{item.category}</span>

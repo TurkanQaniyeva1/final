@@ -1,0 +1,138 @@
+/* Wishlist Container */
+.wishlist {
+    background-color: #1a1a2e; /* Qara-mavi fon */
+    color: #e5e5e5; /* Açıq boz mətn */
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    min-height: 100vh;
+  }
+  
+  /* Başlıq */
+  .wishlist h1 {
+    text-align: center;
+    color: #00aaff; /* Mavi başlıq */
+    margin-bottom: 20px;
+    font-size: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  
+  /* Boş mesaj */
+  .wishlist p {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #bbb;
+  }
+  
+  /* Wishlist items */
+  .wishlist-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  /* Hər bir element */
+  .wishlist-item {
+    background: #162447; /* Tünd mavi fon */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .wishlist-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+  }
+  
+  /* Şəkil */
+  .wishlist-item-image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  /* Məlumat */
+  .wishlist-item-info {
+    padding: 15px;
+    text-align: center;
+  }
+  
+  .wishlist-item-info h3 {
+    margin: 10px 0;
+    font-size: 1.2rem;
+    color: #00d4ff; /* Parlaq mavi başlıq */
+  }
+  
+  .wishlist-item-info span {
+    display: block;
+    color: #aaa;
+    margin-bottom: 10px;
+  }
+  
+  .wishlist-item-info p {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #e5e5e5;
+  }
+  
+  /* Actions */
+  .wishlist-item-actions {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .wishlist-item-actions button {
+    background-color: #00aaff; /* Mavi düymə */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .wishlist-item-actions button:hover {
+    background-color: #007acc; /* Daha tünd mavi */
+    transform: scale(1.05);
+  }
+  
+  .wishlist-item-actions button svg {
+    font-size: 1.2rem;
+  }
+  
+  .loading {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #00aaff;
+    margin-top: 20px;
+  }
+  
+.wishlist-items {
+    display: flex; /* Flexbox istifadə edirik */
+    flex-wrap: wrap; /* Sıra dolduqda növbəti sətirə keçir */
+    gap: 20px; /* Elementlər arasında boşluq */
+    justify-content: center; /* Elementləri ortalayır */
+  }
+  
+  .wishlist-item {
+    background: #162447; /* Tünd mavi fon */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 300px; /* Eyni genişlik */
+  }
+  
+  .wishlist-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+  }
+  

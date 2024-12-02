@@ -42,7 +42,6 @@
   transform: scale(1.1);
 }
 
-/* Main Section */
 .profile-main {
   flex: 1;
   padding: 20px;
@@ -51,6 +50,7 @@
   background: linear-gradient(120deg, #161b22 40%, #21262d 100%);
   animation: fadeIn 1s forwards;
 }
+
 
 @keyframes fadeIn {
   from {

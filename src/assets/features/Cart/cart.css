@@ -1,0 +1,129 @@
+.cart {
+    background-color: #1a1a2e;
+    color: #e5e5e5; 
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    min-height: 100vh;
+  }
+  
+  .cart h1 {
+    text-align: center;
+    color: #00aaff;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  
+  .cart p {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #bbb;
+  }
+  
+  .cart-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .cart-item {
+    background: #162447;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 300px;
+  }
+  
+  .cart-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+  }
+  
+  .cart-item-image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .cart-item-info {
+    padding: 15px;
+    text-align: center;
+  }
+  
+  .cart-item-info h3 {
+    margin: 10px 0;
+    font-size: 1.2rem;
+    color: #00d4ff;
+  }
+  
+  .cart-item-info span {
+    display: block;
+    color: #aaa;
+    margin-bottom: 10px;
+  }
+  
+  .cart-item-info p {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #e5e5e5;
+  }
+  
+  /* Actions */
+  .cart-item-actions {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .cart-item-actions button {
+    background-color: #00aaff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .cart-item-actions button:hover {
+    background-color: #007acc;
+    transform: scale(1.05);
+  }
+  
+  .cart-item-actions button svg {
+    font-size: 1.2rem;
+  }
+  
+  .cart-summary {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .cart-summary h2 {
+    color: #00ffcc;
+    font-size: 1.5rem;
+  }
+  
+  .cart-summary button {
+    background-color: #00ffcc;
+    color: #1a1a2e;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .cart-summary button:hover {
+    background-color: #00d4aa;
+  }
+  
